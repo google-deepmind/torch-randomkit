@@ -14,10 +14,10 @@ function myTests.test_beta()
 
     -- call N with require between each another
     torch.setRNGState(state)
-    local y = torch.Tensor(N)
+    local multipleRequire = torch.Tensor(N)
     for i=1,N do
         require 'randomkit'
-        y[i] = randomkit.gauss()
+        multipleRequire[i] = randomkit.gauss()
     end
 
     -- The streams should be the same

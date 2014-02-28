@@ -6,7 +6,7 @@ function randomkit.bytes(...)
         error("randomkit.bytes() can only store into a ByteTensor!")
     end
     local dataPtr = torch.data(result)
-    randomkit.ffi.rk_fill(dataPtr, result:nElement(), state)
+    randomkit.ffi.rk_fill(dataPtr, result:nElement(), randomkit._state)
     return result
 end
 

@@ -1,9 +1,10 @@
+require "totem"
 require 'randomkit'
 local ffi = require 'ffi'
 require 'torchffi'
 
 local myTest = {}
-local tester = torch.Tester()
+local tester = totem.Tester()
 local seed = 1234567890
 
 function myTest.test_binomial_n_zero()

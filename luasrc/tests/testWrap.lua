@@ -1,8 +1,9 @@
+require "totem"
 require 'randomkit'
 local ffi = require 'ffi'
 
 local myTest = {}
-local tester = torch.Tester()
+local tester = totem.Tester()
 
 function myTest.testFFICall()
     local state = ffi.new('rk_state')

@@ -1,5 +1,6 @@
+require "totem"
 local myTests = {}
-local tester = torch.Tester()
+local tester = totem.Tester()
 
 function myTests.test_beta()
     local N = 10000

@@ -4,8 +4,10 @@ require 'torchffi'
 randomkit.ffi = ffi.load(package.searchpath('librandomkit', package.cpath))
 
 ffi.cdef[[
+typedef struct THGenerator THGenerator;
 typedef struct rk_state_
 {
+    THGenerator *torch_state;
     unsigned long key[624];
     int pos;
     int has_gauss; /* !=0: gauss contains a gaussian deviate */
@@ -168,25 +170,32 @@ funs['rk_uniform'] = {
    since we have replaced randomkit's own Mersenne-Twister by
    Torch's ]]
 randomkit._state = ffi.new('rk_state')
+randomkit._state.torch_state = torch._gen:address()
 randomkit.ffi.rk_seed(0, randomkit._state)
 
 -- Extend torch state handling to handle randomkit's state too
-randomkit.manualSeed = function(seed)
+local _manualSeed = torch.manualSeed
+torch.manualSeed = function(seed)
     randomkit.ffi.rk_seed(0, randomkit._state)
+    return _manualSeed(seed)
 end
 
-randomkit.getRNGState = function()
+local _getRNGState = torch.getRNGState
+torch.getRNGState = function()
     -- Serialize to string, required to write to file
     local clonedState = ffi.string(randomkit._state, ffi.sizeof(randomkit._state))
     return {
+        torch = _getRNGState(),
         randomkit = clonedState
     }
 end
 
-randomkit.setRNGState = function(state)
-    if not type(state) == 'table' or not state.randomkit then
+local _setRNGState = torch.setRNGState
+torch.setRNGState = function(state)
+    if not type(state) == 'table' or not state.torch or not state.randomkit then
         error('State was not saved with randomkit, cannot set it back')
     end
+    _setRNGState(state.torch)
     -- Deserialize from string
     ffi.copy(randomkit._state, state.randomkit, ffi.sizeof(randomkit._state))
 end

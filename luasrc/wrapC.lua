@@ -170,7 +170,7 @@ funs['rk_uniform'] = {
    since we have replaced randomkit's own Mersenne-Twister by
    Torch's ]]
 randomkit._state = ffi.new('rk_state')
-randomkit._state.torch_state = torch._gen:address()
+randomkit._state.torch_state = ffi.cast("THGenerator*", torch.pointer(torch._gen))
 randomkit.ffi.rk_seed(0, randomkit._state)
 
 -- Extend torch state handling to handle randomkit's state too

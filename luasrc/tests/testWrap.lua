@@ -7,7 +7,7 @@ local tester = totem.Tester()
 
 function myTest.testFFICall()
     local state = ffi.new('rk_state')
-    state.torch_state = torch._gen:address()
+    state.torch_state = ffi.cast("THGenerator*", torch.pointer(torch._gen))
     randomkit.ffi.rk_seed(0, state)
     local x
     for i=1, 10 do

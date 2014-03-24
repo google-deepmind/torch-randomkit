@@ -3,7 +3,7 @@ version = '0-0'
 
 source = {
    url = 'git://github.com/jucor/torch-randomkit.git',
-   branch = 'master'
+   branch = 'v0.0'
 }
 
 description = {

@@ -1,11 +1,13 @@
+require "totem"
 require 'randomkit'
 local ffi = require 'ffi'
 
 local myTest = {}
-local tester = torch.Tester()
+local tester = totem.Tester()
 
 function myTest.testFFICall()
     local state = ffi.new('rk_state')
+    state.torch_state = ffi.cast("THGenerator*", torch.pointer(torch._gen))
     randomkit.ffi.rk_seed(0, state)
     local x
     for i=1, 10 do

@@ -1,6 +1,7 @@
+require "totem"
 require 'randomkit'
 local seedTest = {}
-local tester = torch.Tester()
+local tester = totem.Tester()
 
 function seedTest.testManualSeed()
     local seed = 1234567890

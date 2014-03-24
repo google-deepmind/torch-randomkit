@@ -65,6 +65,7 @@
 
 typedef struct rk_state_
 {
+    struct THGenerator *torch_state;
     unsigned long key[RK_STATE_LEN];
     int pos;
     int has_gauss; /* !=0: gauss contains a gaussian deviate */

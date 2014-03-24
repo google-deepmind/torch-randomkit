@@ -4,8 +4,10 @@ require 'torchffi'
 randomkit.ffi = ffi.load(package.searchpath('librandomkit', package.cpath))
 
 ffi.cdef[[
+typedef struct THGenerator THGenerator;
 typedef struct rk_state_
 {
+    THGenerator *torch_state;
     unsigned long key[624];
     int pos;
     int has_gauss; /* !=0: gauss contains a gaussian deviate */
@@ -168,6 +170,7 @@ funs['rk_uniform'] = {
    since we have replaced randomkit's own Mersenne-Twister by
    Torch's ]]
 randomkit._state = ffi.new('rk_state')
+randomkit._state.torch_state = ffi.cast("THGenerator*", torch.pointer(torch._gen))
 randomkit.ffi.rk_seed(0, randomkit._state)
 
 -- Extend torch state handling to handle randomkit's state too

@@ -1,3 +1,4 @@
+require "totem"
 
 --[[ TODO - wrap multinomial or remove these
 function myTest.test_multinomial_basic()

@@ -1,6 +1,6 @@
 require "totem"
 
-require 'randomkit'
+local randomkit = require 'randomkit'
 local myTests = {}
 local tester = totem.Tester()
 function myTests.test_beta()

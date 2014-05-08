@@ -1,19 +1,4 @@
--- Force to include randomkit once only, relying on the global state
--- NB: it is ugly to rely on the fact that we pollute the global
--- namespace, yet I do not see a better way to avoid 
--- including ourselves twice -- which would cause seed problems.
---
--- This will need deeper consideration once we will return only
--- a local table, and once we will want proper multi-thread
--- support. In particular, we will have to modify the interfacing
--- with torch.[gs]etRNGState in wrapC.lua.
---
--- But for now (November 2013), this is good enough.
-if rawget(_G, "randomkit") then
-    return randomkit
-end
-
-randomkit = {}
+local randomkit = require 'randomkit.env'
 
 function randomkit._isTensor(v)
     if torch.typename(v) then
@@ -114,8 +99,8 @@ function randomkit._check1DParams(K, defaultResultType, ...)
     return result, params
 end
 
-torch.include("randomkit", "nonC.lua")
-torch.include("randomkit", "wrapC.lua")
+require "randomkit.nonC"
+require "randomkit.wrapC"
 
 local aliases = {
     random_sample = 'double',

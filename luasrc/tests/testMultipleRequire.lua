@@ -9,7 +9,7 @@ function myTests.test_beta()
 
 
     -- Call N in one go
-    require 'randomkit'
+    local randomkit = require 'randomkit'
     state = torch.getRNGState()
     randomkit.gauss(oneRequire)
 
@@ -17,8 +17,8 @@ function myTests.test_beta()
     torch.setRNGState(state)
     local multipleRequire = torch.Tensor(N)
     for i=1,N do
-        require 'randomkit'
-        multipleRequire[i] = randomkit.gauss()
+       local randomkit = require 'randomkit'
+       multipleRequire[i] = randomkit.gauss()
     end
 
     -- The streams should be the same

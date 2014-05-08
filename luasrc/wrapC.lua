@@ -1,6 +1,8 @@
 local ffi = require("ffi")
 require 'torchffi'
 
+local randomkit = require 'randomkit.env'
+
 randomkit.ffi = ffi.load(package.searchpath('librandomkit', package.cpath))
 
 ffi.cdef[[

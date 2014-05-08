@@ -52,7 +52,7 @@ typedef enum {
 
 -- Declare the functions, spearately since this string
 -- is reused for automatic wrapping
-fun_cdef = [[
+local fun_cdef = [[
  void rk_seed(unsigned long seed, rk_state *state);
  long rk_random(rk_state *state);
  long rk_long(rk_state *state);

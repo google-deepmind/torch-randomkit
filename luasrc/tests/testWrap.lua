@@ -1,5 +1,5 @@
 require "totem"
-require 'randomkit'
+local randomkit = require 'randomkit'
 local ffi = require 'ffi'
 
 local myTest = {}

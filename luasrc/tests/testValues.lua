@@ -1,7 +1,6 @@
 require "totem"
-require 'randomkit'
+local randomkit = require 'randomkit'
 local ffi = require 'ffi'
-require 'torchffi'
 
 local myTest = {}
 local tester = totem.Tester()

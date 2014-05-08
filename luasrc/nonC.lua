@@ -1,4 +1,5 @@
 --[[ This file is for functions that are not direct wraps of the randomkit C routines ]]
+local randomkit = require 'randomkit.env'
 
 function randomkit.bytes(...)
     local result, params = randomkit._check1DParams(0, torch.ByteTensor, ...)

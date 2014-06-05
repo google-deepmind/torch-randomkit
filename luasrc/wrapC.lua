@@ -1,6 +1,6 @@
 local ffi = require("ffi")
 
-randomkit.ffi = ffi.C
+randomkit.ffi = ffi.load(package.searchpath('librandomkit', package.cpath))
 
 ffi.cdef[[
 typedef struct THGenerator THGenerator;

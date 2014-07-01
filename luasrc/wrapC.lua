@@ -174,13 +174,21 @@ randomkit.ffi.rk_seed(0, randomkit._state)
 
 -- Extend torch state handling to handle randomkit's state too
 local _manualSeed = torch.manualSeed
-torch.manualSeed = function(seed)
+torch.manualSeed = function(generator, seed)
+    if seed then
+      return _manualSeed(generator, seed)
+    else
+      seed = generator 
+    end
     randomkit.ffi.rk_seed(0, randomkit._state)
     return _manualSeed(seed)
 end
 
 local _getRNGState = torch.getRNGState
-torch.getRNGState = function()
+torch.getRNGState = function(generator)
+    if generator then
+      return _getRNGState(generator)
+    end
     -- Serialize to string, required to write to file
     local clonedState = ffi.string(randomkit._state, ffi.sizeof(randomkit._state))
     return {
@@ -190,7 +198,12 @@ torch.getRNGState = function()
 end
 
 local _setRNGState = torch.setRNGState
-torch.setRNGState = function(state)
+torch.setRNGState = function(generator, state)
+    if state then 
+      return _setRNGState(generator, state)
+    else
+      state = generator
+    end
     if not type(state) == 'table' or not state.torch or not state.randomkit then
         error('State was not saved with randomkit, cannot set it back')
     end

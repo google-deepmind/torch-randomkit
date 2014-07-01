@@ -221,7 +221,8 @@
 
 <h3 id="toc_5">Getting/setting the seed and the state</h3>
 
-<p>Randomkit is transparently integrated with Torch&#39;s random stream: just use <code>torch.manualSeed(seed)</code>, <code>torch.getRNGState()</code>, and <code>torch.setRNGState(state)</code> as usual.</p>
+<p>Randomkit is transparently integrated with Torch&#39;s random stream: just use <code>torch.manualSeed(seed)</code>, <code>torch.getRNGState()</code>, and <code>torch.setRNGState(state)</code> as usual.
+Specifying an (optional) torch.Generator instance as the first argument will only influence the state of that genereator, leaving the state of randomkit unchanged.</p>
 
 <h2 id="toc_6">Installation</h2>
 

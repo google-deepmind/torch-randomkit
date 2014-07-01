@@ -76,13 +76,5 @@ function seedTest.testSeralizeRNGState()
     os.remove(fileName)
 end
 
-function seedTest.testGenerateRandomSeed()
-    local a_seed = randomkit.generate_random_seed()
-    local another_seed = randomkit.generate_random_seed()
-
-    tester:assertne(a_seed, another_seed, 'Expect /dev/random to generate different seeds')
-    tester:assert(a_seed >=0 and a_seed <2^32, 'a_seed should be a 32 bit unsigned integer, instead: ' .. a_seed)
-end
-
 tester:add(seedTest)
 tester:run()

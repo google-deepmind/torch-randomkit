@@ -114,31 +114,6 @@ function randomkit._check1DParams(K, defaultResultType, ...)
     return result, params
 end
 
---[[! Generate a seed by reading from /dev/random
-
-This function reads a high entropy 32 bit random seed from /dev/random.
-
-]]--
-function randomkit.generate_random_seed()
-    local function convertToInt(data, nbytes, i, acc )
-        i = i or 0 
-        acc = acc or 0
-        if i == nbytes then
-            return acc
-        end
-        acc = acc + 256^i * string.byte(data,i+1)
-        i =  i + 1
-        return convertToInt(data, nbytes, i,acc)
-    end
-
-    local nbytes = 4
-    local source = '/dev/random'
-    local ran_source = io.open(source, 'rb')
-    assert (ran_source , 'randomkit.generate_random_seed(): failure to open ' .. source )
-    local raw_data = ran_source:read(nbytes)
-    return convertToInt(raw_data, nbytes)
-end
-
 torch.include("randomkit", "nonC.lua")
 torch.include("randomkit", "wrapC.lua")
 

@@ -1,11 +1,12 @@
 local ffi = require("ffi")
-require 'torchffi'
 
 randomkit.ffi = ffi.load(package.searchpath('librandomkit', package.cpath))
 
 ffi.cdef[[
+typedef struct THGenerator THGenerator;
 typedef struct rk_state_
 {
+    THGenerator *torch_state;
     unsigned long key[624];
     int pos;
     int has_gauss; /* !=0: gauss contains a gaussian deviate */
@@ -50,7 +51,7 @@ typedef enum {
 
 -- Declare the functions, spearately since this string
 -- is reused for automatic wrapping
-fun_cdef = [[
+local fun_cdef = [[
  void rk_seed(unsigned long seed, rk_state *state);
  long rk_random(rk_state *state);
  long rk_long(rk_state *state);
@@ -168,25 +169,18 @@ funs['rk_uniform'] = {
    since we have replaced randomkit's own Mersenne-Twister by
    Torch's ]]
 randomkit._state = ffi.new('rk_state')
+randomkit._state.torch_state = ffi.cast("THGenerator*", torch.pointer(torch._gen))
 randomkit.ffi.rk_seed(0, randomkit._state)
 
 -- Extend torch state handling to handle randomkit's state too
 local _manualSeed = torch.manualSeed
-torch.manualSeed = function(generator, seed)
-    if seed then
-      return _manualSeed(generator, seed)
-    else
-      seed = generator
-    end
+torch.manualSeed = function(seed)
     randomkit.ffi.rk_seed(0, randomkit._state)
     return _manualSeed(seed)
 end
 
 local _getRNGState = torch.getRNGState
-torch.getRNGState = function(generator)
-    if generator then
-      return _getRNGState(generator)
-    end
+torch.getRNGState = function()
     -- Serialize to string, required to write to file
     local clonedState = ffi.string(randomkit._state, ffi.sizeof(randomkit._state))
     return {
@@ -196,13 +190,7 @@ torch.getRNGState = function(generator)
 end
 
 local _setRNGState = torch.setRNGState
-torch.setRNGState = function(generator, state)
-    if state then
-      return _setRNGState(generator,state)
-    else 
-      state = generator
-    end
-    
+torch.setRNGState = function(state)
     if not type(state) == 'table' or not state.torch or not state.randomkit then
         error('State was not saved with randomkit, cannot set it back')
     end
@@ -215,16 +203,12 @@ local returnTypeMapping = {
     int = torch.IntTensor,
     double = torch.DoubleTensor
 }
-local function getDataArray(tensor)
-    local pointerDef = torch.typename(tensor):gfind('torch%.(.*Tensor)')().."*"
-    return ffi.cast(pointerDef, torch.pointer(tensor)).storage.data
-end
 local function generateIntoTensor(output, func)
     if not output:isContiguous() then
         error("generateIntoTensor only supports contiguous tensors")
     end
 
-    local outputdata = getDataArray(output)
+    local outputdata = torch.data(output)
     local offset = output:storageOffset()
     -- A zero-based index is used to access the data.
     -- The end index is (startIndex + nElements - 1).
@@ -242,8 +226,8 @@ local function applyNotInPlace(input, output, func)
         error("applyNotInPlace: tensor element counts are not consistent")
     end
 
-    local inputdata = getDataArray(input)
-    local outputdata = getDataArray(output)
+    local inputdata = torch.data(input)
+    local outputdata = torch.data(output)
     local offset = input:storageOffset()
     -- A zero-based index is used to access the data.
     -- The end index is (startIndex + nElements - 1).
@@ -261,9 +245,9 @@ local function mapNotInPlace(inputA, inputB, output, func)
         error("mapNotInPlace: tensor element counts are not consistent")
     end
 
-    local inputAdata = getDataArray(inputA)
-    local inputBdata = getDataArray(inputB)
-    local outputdata = getDataArray(output)
+    local inputAdata = torch.data(inputA)
+    local inputBdata = torch.data(inputB)
+    local outputdata = torch.data(output)
     local offset = inputA:storageOffset()
     -- A zero-based index is used to access the data.
     -- The end index is (startIndex + nElements - 1).
@@ -283,10 +267,10 @@ local function map2NotInPlace(inputA, inputB, inputC, output, func)
         error("map2NotInPlace: tensor element counts are not consistent")
     end
 
-    local inputAdata = getDataArray(inputA)
-    local inputBdata = getDataArray(inputB)
-    local inputCdata = getDataArray(inputC)
-    local outputdata = getDataArray(output)
+    local inputAdata = torch.data(inputA)
+    local inputBdata = torch.data(inputB)
+    local inputCdata = torch.data(inputC)
+    local outputdata = torch.data(output)
     local offset = inputA:storageOffset()
     -- A zero-based index is used to access the data.
     -- The end index is (startIndex + nElements - 1).

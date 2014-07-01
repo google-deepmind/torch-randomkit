@@ -9,7 +9,7 @@
 -- with torch.[gs]etRNGState in wrapC.lua.
 --
 -- But for now (November 2013), this is good enough.
-if randomkit then
+if rawget(_G, "randomkit") then
     return randomkit
 end
 

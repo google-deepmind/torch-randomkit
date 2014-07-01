@@ -1,6 +1,7 @@
+require "totem"
 
 local seedTest = {}
-local tester = torch.Tester()
+local tester = totem.Tester()
 
 function seedTest.testStateBeforeRequire()
     local state = torch.getRNGState()

@@ -212,10 +212,9 @@ rk_randomseed(rk_state *state)
 unsigned long
 rk_random(rk_state *state)
 {
-    return THRandom_random();
+    return THRandom_random(state->torch_state);
 
-   /* Commented out to use only Torch's sampler
-    *  (state->pos == RK_STATE_LEN) {
+/*  if(state->pos == RK_STATE_LEN) {
         int i;
 
         for (i = 0; i < N - M; i++) {
@@ -233,7 +232,6 @@ rk_random(rk_state *state)
     }
     y = state->key[state->pos++];
     */
-
     /* Tempering */
     /* y ^= (y >> 11);
     y ^= (y << 7) & 0x9d2c5680UL;

@@ -1,7 +1,8 @@
+require "totem"
 
 require 'randomkit'
 local myTests = {}
-local tester = torch.Tester()
+local tester = totem.Tester()
 function myTests.test_beta()
    tester:assert(randomkit.beta(0.5, 0.5))
    tester:assert(randomkit.beta(torch.Tensor(10), 0.5, 0.5))

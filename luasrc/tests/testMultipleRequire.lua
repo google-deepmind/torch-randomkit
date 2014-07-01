@@ -27,4 +27,4 @@ function myTests.test_beta()
 end
 
 tester:add(myTests)
-tester:run()
+return tester:run()

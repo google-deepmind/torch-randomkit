@@ -12,4 +12,4 @@ end
 
 
 tester:add(seedTest)
-tester:run()
+return tester:run()

@@ -33,4 +33,4 @@ function myTest.testWrappedCall()
 end
 
 tester:add(myTest)
-tester:run()
+return tester:run()

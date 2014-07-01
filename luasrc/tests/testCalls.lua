@@ -361,4 +361,4 @@ function myTests.test_zipf()
 end
 
 tester:add(myTests)
-tester:run()
+return tester:run()

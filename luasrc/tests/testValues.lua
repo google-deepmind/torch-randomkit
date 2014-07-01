@@ -381,4 +381,4 @@ function myTest.test_returnType()
 end
 
 tester:add(myTest)
-tester:run()
+return tester:run()

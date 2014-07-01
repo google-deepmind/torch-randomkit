@@ -1,5 +1,10 @@
 require "totem"
 
+require 'randomkit'
+local myTests = {}
+local tester = totem.Tester()
+return tester:run()
+
 --[[ TODO - wrap multinomial or remove these
 function myTest.test_multinomial_basic()
     randomkit.multinomial(100, {0.2, 0.8})

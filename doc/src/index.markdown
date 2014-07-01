@@ -55,7 +55,7 @@ randomkit.poisson(x, many_lambda)
 ###Getting/setting the seed and the state
 
 Randomkit is transparently integrated with Torch's random stream: just use `torch.manualSeed(seed)`, `torch.getRNGState()`, and `torch.setRNGState(state)` as usual.
-
+Specifying an (optional) torch.Generator instance as the first argument will only influence the state of that genereator, leaving the state of randomkit unchanged.
 
 ##Installation
 

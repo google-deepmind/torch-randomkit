@@ -32,5 +32,28 @@ function myTest.testWrappedCall()
 
 end
 
+
+function myTest.callgetRNGWithGenerator()
+    local generator = torch.Generator()
+    local ok, msg = pcall( torch.getRNGState, generator)
+    tester:assert(ok, 'Failed to get RNG state')
+end
+
+function myTest.callManualSeedWithGenerator()
+    local generator = torch.Generator()
+    local ok, msg = pcall( torch.manualSeed, generator,1)
+    tester:assert(ok, 'Failed to set seed')
+end
+
+
+function myTest.callsetRNGWithGenerator()
+    local generator = torch.Generator()
+    local ok, state = pcall( torch.getRNGState, generator)
+    tester:assert(ok, 'Failed to getRNG State')
+    local ok, msg = pcall( torch.setRNGState, generator, state)
+    tester:assert(ok, 'Failed to set RNG state')
+end
+
+
 tester:add(myTest)
 tester:run()

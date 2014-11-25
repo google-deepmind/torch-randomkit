@@ -2,13 +2,13 @@ package = 'randomkit'
 version = '0-0'
 
 source = {
-   url = 'git://github.com/jucor/torch-randomkit.git',
+   url = 'git://github.com/deepmind/torch-randomkit.git',
    branch = 'v0.0'
 }
 
 description = {
   summary = "Numpy's randomkit, wrapped for Torch",
-  homepage = "http://jucor.github.io/torch-randomkit",
+  homepage = "http://deepmind.github.io/torch-randomkit",
   detailed = "Provides and wraps the wide array of non-uniform random variate generators from the Randomkit C library, used at the heart of NumPy and distributed with permission. Interfaced with Torch's RNG functions to keep one single stream.",
   license = "BSD",
   maintainer = "Julien Cornebise <julien@cornebise.com>"

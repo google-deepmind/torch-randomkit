@@ -10,7 +10,6 @@ function myTests.test_beta()
 
     -- Call N in one go
     require 'randomkit'
-    local ignored = torch.rand(1)
     local state = torch.getRNGState()
     randomkit.gauss(oneRequire)
 

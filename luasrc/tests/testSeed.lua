@@ -29,11 +29,10 @@ function seedTest.testManualSeed()
 end
 
 function seedTest.testRNGState()
-   local ignored, state, stateCloned, before, after
+   local state, stateCloned, before, after
 
     local function test_generator(f, s)
         s = s or ''
-        ignored = f()
         state = torch.getRNGState()
         before = f()
         torch.setRNGState(state)

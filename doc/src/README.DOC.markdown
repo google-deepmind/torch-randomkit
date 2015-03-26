@@ -12,13 +12,20 @@ cd doc/src
 bundle exec jekyll build --source ./ --destination ../html
 {%endhighlight}
 
+Commit
+{%highlight bash}
+git commit -m "Update HTML doc"
+{%endhighlight}
+
 Then merge to the gh-pages branch:
 {%highlight bash}
-git subtree split --prefix doc/html --branch gh-pages
+cd ../..
+git checkout gh-pages
+git merge master -X subtree=doc/html
 {%endhighlight}
 
 And push:
 {%highlight bash}
-git checkout gh-pages
 git push
+git checkout master
 {%endhighlight}

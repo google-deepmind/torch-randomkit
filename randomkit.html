@@ -72,7 +72,7 @@ until we can find a better way to document this for Torch.
 
 <b>NOTE</b>: the <b>size</b> parameter mentioned in the Python docstring should be omitted. Instead, please refer to <a href="index.html">the torch-specific documentation</a> for generating multiple samples.
 </p>
-<a id='beta'><h2>randomkit.beta([result], a, b)</h2><pre>
+<a id='beta' /><h2>randomkit.beta([result], a, b)</h2><pre>
 The Beta distribution over ``[0, 1]``.
 
 The Beta distribution is a special case of the Dirichlet distribution,
@@ -101,20 +101,21 @@ Returns
 -------
 out : ndarray
 Array of the given shape, containing values drawn from a
-Beta distribution.</pre><hr /><a id='binomial'><h2>randomkit.binomial([result], n, p)</h2><pre>
+Beta distribution.
+</pre><hr /><a id='binomial' /><h2>randomkit.binomial([result], n, p)</h2><pre>
 Draw samples from a binomial distribution.
 
 Samples are drawn from a Binomial distribution with specified
 parameters, n trials and p probability of success where
-n an integer > 0 and p is in the interval [0,1]. (n may be
+n an integer &gt; 0 and p is in the interval [0,1]. (n may be
 input as a float, but it is truncated to an integer in use)
 
 Parameters
 ----------
 n : float (but truncated to an integer)
-parameter, > 0.
+parameter, &gt; 0.
 p : float
-parameter, >= 0 and <=1.
+parameter, &gt;= 0 and &lt;=1.
 
 Returns
 -------
@@ -137,7 +138,7 @@ of success, and :math:`N` is the number of successes.
 
 When estimating the standard error of a proportion in a population by
 using a random sample, the normal distribution works well unless the
-product p*n <=5, where p = population proportion estimate, and n =
+product p*n &lt;=5, where p = population proportion estimate, and n =
 number of samples, in which case the binomial distribution is used
 instead. For example, a sample of 15 people shows 4 who are left
 handed, and 11 who are right handed. Then p = 4/15 = 27%. 0.27*15 = 4,
@@ -161,8 +162,8 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> n, p = 10, .5 # number of trials, probability of each trial
->>> s = np.random.binomial(n, p, 1000)
+&gt;&gt;&gt; n, p = 10, .5 # number of trials, probability of each trial
+&gt;&gt;&gt; s = np.random.binomial(n, p, 1000)
 # result of flipping a coin 10 times, tested 1000 times.
 
 A real world example. A company drills 9 wild-cat oil exploration
@@ -172,8 +173,9 @@ wells fail. What is the probability of that happening?
 Let's do 20,000 trials of the model, and count the number that
 generate zero positive results.
 
->>> sum(np.random.binomial(9,0.1,20000)==0)/20000.
-answer = 0.38885, or 38%.</pre><hr /><a id='bytes'><h2>randomkit.bytes([result], length)</h2><pre>
+&gt;&gt;&gt; sum(np.random.binomial(9,0.1,20000)==0)/20000.
+answer = 0.38885, or 38%.
+</pre><hr /><a id='bytes' /><h2>randomkit.bytes([result], length)</h2><pre>
 Return random bytes.
 
 Parameters
@@ -188,8 +190,9 @@ String of length `length`.
 
 Examples
 --------
->>> np.random.bytes(10)
-' eh\x85\x022SZ\xbf\xa4' #random</pre><hr /><a id='chisquare'><h2>randomkit.chisquare([result], df)</h2><pre>
+&gt;&gt;&gt; np.random.bytes(10)
+' eh\x85\x022SZ\xbf\xa4' #random
+</pre><hr /><a id='chisquare' /><h2>randomkit.chisquare([result], df)</h2><pre>
 Draw samples from a chi-square distribution.
 
 When `df` independent random variables, each with standard normal
@@ -211,7 +214,7 @@ array.
 Raises
 ------
 ValueError
-When `df` <= 0 or when an inappropriate `size` (e.g. ``size=-1``)
+When `df` &lt;= 0 or when an inappropriate `size` (e.g. ``size=-1``)
 is given.
 
 Notes
@@ -241,15 +244,18 @@ References
 
 Examples
 --------
->>> np.random.chisquare(2,4)
-array([ 1.89920014,  9.00867716,  3.13710533,  5.62318272])</pre><hr /><a id='exponential'><h2>randomkit.exponential([result], scale)</h2><pre>
+&gt;&gt;&gt; np.random.chisquare(2,4)
+array([ 1.89920014,  9.00867716,  3.13710533,  5.62318272])
+</pre><hr /><a id='double' /><h2>randomkit.double([result])</h2>
+<p>Alias for <a href='#random_sample'>randomkit.random_sample</a></p>
+<hr /><a id='exponential' /><h2>randomkit.exponential([result], scale)</h2><pre>
 Exponential distribution.
 
 Its probability density function is
 
 .. math:: f(x; \frac{1}{\beta}) = \frac{1}{\beta} \exp(-\frac{x}{\beta}),
 
-for ``x > 0`` and 0 elsewhere. :math:`\beta` is the scale parameter,
+for ``x &gt; 0`` and 0 elsewhere. :math:`\beta` is the scale parameter,
 which is the inverse of the rate parameter :math:`\lambda = 1/\beta`.
 The rate parameter is an alternative, widely used parameterization
 of the exponential distribution [3]_.
@@ -271,7 +277,8 @@ Random Signal Principles", 4th ed, 2001, p. 57.
 .. [2] "Poisson Process", Wikipedia,
 http://en.wikipedia.org/wiki/Poisson_process
 .. [3] "Exponential Distribution, Wikipedia,
-http://en.wikipedia.org/wiki/Exponential_distribution</pre><hr /><a id='f'><h2>randomkit.f([result], dfnum, dfden)</h2><pre>
+http://en.wikipedia.org/wiki/Exponential_distribution
+</pre><hr /><a id='f' /><h2>randomkit.f([result], dfnum, dfden)</h2><pre>
 Draw samples from a F distribution.
 
 Samples are drawn from an F distribution with specified parameters,
@@ -331,29 +338,30 @@ Calculating the F statistic from the data gives a value of 36.01.
 
 Draw samples from the distribution:
 
->>> dfnum = 1. # between group degrees of freedom
->>> dfden = 48. # within groups degrees of freedom
->>> s = np.random.f(dfnum, dfden, 1000)
+&gt;&gt;&gt; dfnum = 1. # between group degrees of freedom
+&gt;&gt;&gt; dfden = 48. # within groups degrees of freedom
+&gt;&gt;&gt; s = np.random.f(dfnum, dfden, 1000)
 
 The lower bound for the top 1% of the samples is :
 
->>> sort(s)[-10]
+&gt;&gt;&gt; sort(s)[-10]
 7.61988120985
 
 So there is about a 1% chance that the F statistic will exceed 7.62,
 the measured value is 36, so the null hypothesis is rejected at the 1%
-level.</pre><hr /><a id='gamma'><h2>randomkit.gamma([result], shape, scale)</h2><pre>
+level.
+</pre><hr /><a id='gamma' /><h2>randomkit.gamma([result], shape, scale)</h2><pre>
 Draw samples from a Gamma distribution.
 
 Samples are drawn from a Gamma distribution with specified parameters,
 `shape` (sometimes designated "k") and `scale` (sometimes designated
-"theta"), where both parameters are > 0.
+"theta"), where both parameters are &gt; 0.
 
 Parameters
 ----------
-shape : scalar > 0
+shape : scalar &gt; 0
 The shape of the gamma distribution.
-scale : scalar > 0, optional
+scale : scalar &gt; 0, optional
 The scale of the gamma distribution.  Default is equal to 1.
 
 Returns
@@ -391,19 +399,22 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> shape, scale = 2., 2. # mean and dispersion
->>> s = np.random.gamma(shape, scale, 1000)
+&gt;&gt;&gt; shape, scale = 2., 2. # mean and dispersion
+&gt;&gt;&gt; s = np.random.gamma(shape, scale, 1000)
 
 Display the histogram of the samples, along with
 the probability density function:
 
->>> import matplotlib.pyplot as plt
->>> import scipy.special as sps
->>> count, bins, ignored = plt.hist(s, 50, normed=True)
->>> y = bins**(shape-1)*(np.exp(-bins/scale) /
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; import scipy.special as sps
+&gt;&gt;&gt; count, bins, ignored = plt.hist(s, 50, normed=True)
+&gt;&gt;&gt; y = bins**(shape-1)*(np.exp(-bins/scale) /
 ...                      (sps.gamma(shape)*scale**shape))
->>> plt.plot(bins, y, linewidth=2, color='r')
->>> plt.show()</pre><hr /><a id='geometric'><h2>randomkit.geometric([result], p)</h2><pre>
+&gt;&gt;&gt; plt.plot(bins, y, linewidth=2, color='r')
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='gauss' /><h2>randomkit.gauss([result])</h2>
+<p>Alias for <a href='#standard_normal'>randomkit.standard_normal</a></p>
+<hr /><a id='geometric' /><h2>randomkit.geometric([result], p)</h2><pre>
 Draw samples from the geometric distribution.
 
 Bernoulli trials are experiments with one of two outcomes:
@@ -434,12 +445,13 @@ Examples
 Draw ten thousand values from the geometric distribution,
 with the probability of an individual success equal to 0.35:
 
->>> z = np.random.geometric(p=0.35, size=10000)
+&gt;&gt;&gt; z = np.random.geometric(p=0.35, size=10000)
 
 How many trials succeeded after a single run?
 
->>> (z == 1).sum() / 10000.
-0.34889999999999999 #random</pre><hr /><a id='gumbel'><h2>randomkit.gumbel([result], loc, scale)</h2><pre>
+&gt;&gt;&gt; (z == 1).sum() / 10000.
+0.34889999999999999 #random
+</pre><hr /><a id='gumbel' /><h2>randomkit.gumbel([result], loc, scale)</h2><pre>
 Gumbel distribution.
 
 Draw samples from a Gumbel distribution with specified location and scale.
@@ -513,38 +525,39 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> mu, beta = 0, 0.1 # location and scale
->>> s = np.random.gumbel(mu, beta, 1000)
+&gt;&gt;&gt; mu, beta = 0, 0.1 # location and scale
+&gt;&gt;&gt; s = np.random.gumbel(mu, beta, 1000)
 
 Display the histogram of the samples, along with
 the probability density function:
 
->>> import matplotlib.pyplot as plt
->>> count, bins, ignored = plt.hist(s, 30, normed=True)
->>> plt.plot(bins, (1/beta)*np.exp(-(bins - mu)/beta)
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; count, bins, ignored = plt.hist(s, 30, normed=True)
+&gt;&gt;&gt; plt.plot(bins, (1/beta)*np.exp(-(bins - mu)/beta)
 ...          * np.exp( -np.exp( -(bins - mu) /beta) ),
 ...          linewidth=2, color='r')
->>> plt.show()
+&gt;&gt;&gt; plt.show()
 
 Show how an extreme value distribution can arise from a Gaussian process
 and compare to a Gaussian:
 
->>> means = []
->>> maxima = []
->>> for i in range(0,1000) :
+&gt;&gt;&gt; means = []
+&gt;&gt;&gt; maxima = []
+&gt;&gt;&gt; for i in range(0,1000) :
 ...    a = np.random.normal(mu, beta, 1000)
 ...    means.append(a.mean())
 ...    maxima.append(a.max())
->>> count, bins, ignored = plt.hist(maxima, 30, normed=True)
->>> beta = np.std(maxima)*np.pi/np.sqrt(6)
->>> mu = np.mean(maxima) - 0.57721*beta
->>> plt.plot(bins, (1/beta)*np.exp(-(bins - mu)/beta)
+&gt;&gt;&gt; count, bins, ignored = plt.hist(maxima, 30, normed=True)
+&gt;&gt;&gt; beta = np.std(maxima)*np.pi/np.sqrt(6)
+&gt;&gt;&gt; mu = np.mean(maxima) - 0.57721*beta
+&gt;&gt;&gt; plt.plot(bins, (1/beta)*np.exp(-(bins - mu)/beta)
 ...          * np.exp(-np.exp(-(bins - mu)/beta)),
 ...          linewidth=2, color='r')
->>> plt.plot(bins, 1/(beta * np.sqrt(2 * np.pi))
+&gt;&gt;&gt; plt.plot(bins, 1/(beta * np.sqrt(2 * np.pi))
 ...          * np.exp(-(bins - mu)**2 / (2 * beta**2)),
 ...          linewidth=2, color='g')
->>> plt.show()</pre><hr /><a id='hypergeometric'><h2>randomkit.hypergeometric([result], ngood, nbad, nsample)</h2><pre>
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='hypergeometric' /><h2>randomkit.hypergeometric([result], ngood, nbad, nsample)</h2><pre>
 Draw samples from a Hypergeometric distribution.
 
 Samples are drawn from a Hypergeometric distribution with specified
@@ -555,11 +568,11 @@ than or equal to the sum ngood + nbad.
 Parameters
 ----------
 ngood : float (but truncated to an integer)
-parameter, > 0.
+parameter, &gt; 0.
 nbad  : float
-parameter, >= 0.
+parameter, &gt;= 0.
 nsample  : float
-parameter, > 0 and <= ngood+nbad
+parameter, &gt; 0 and &lt;= ngood+nbad
 
 Returns
 -------
@@ -607,19 +620,23 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> ngood, nbad, nsamp = 100, 2, 10
+&gt;&gt;&gt; ngood, nbad, nsamp = 100, 2, 10
 # number of good, number of bad, and number of samples
->>> s = np.random.hypergeometric(ngood, nbad, nsamp, 1000)
->>> hist(s)
+&gt;&gt;&gt; s = np.random.hypergeometric(ngood, nbad, nsamp, 1000)
+&gt;&gt;&gt; hist(s)
 #   note that it is very unlikely to grab both bad items
 
 Suppose you have an urn with 15 white and 15 black marbles.
 If you pull 15 marbles at random, how likely is it that
 12 or more of them are one color?
 
->>> s = np.random.hypergeometric(15, 15, 15, 100000)
->>> sum(s>=12)/100000. + sum(s<=3)/100000.
-#   answer = 0.003 ... pretty unlikely!</pre><hr /><a id='laplace'><h2>randomkit.laplace([result], loc, scale)</h2><pre>
+&gt;&gt;&gt; s = np.random.hypergeometric(15, 15, 15, 100000)
+&gt;&gt;&gt; sum(s&gt;=12)/100000. + sum(s&lt;=3)/100000.
+#   answer = 0.003 ... pretty unlikely!
+</pre><hr /><a id='interval' /><h2>randomkit.interval([result], max)</h2>
+<p>Uniform distribution on the long integers in [0, max]. Actually uniform, using
+accept-reject algorithm.</p>
+<hr/><a id='laplace' /><h2>randomkit.laplace([result], loc, scale)</h2><pre>
 Draw samples from the Laplace or double exponential distribution with
 specified location (or mean) and scale (decay).
 
@@ -670,23 +687,24 @@ Examples
 --------
 Draw samples from the distribution
 
->>> loc, scale = 0., 1.
->>> s = np.random.laplace(loc, scale, 1000)
+&gt;&gt;&gt; loc, scale = 0., 1.
+&gt;&gt;&gt; s = np.random.laplace(loc, scale, 1000)
 
 Display the histogram of the samples, along with
 the probability density function:
 
->>> import matplotlib.pyplot as plt
->>> count, bins, ignored = plt.hist(s, 30, normed=True)
->>> x = np.arange(-8., 8., .01)
->>> pdf = np.exp(-abs(x-loc/scale))/(2.*scale)
->>> plt.plot(x, pdf)
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; count, bins, ignored = plt.hist(s, 30, normed=True)
+&gt;&gt;&gt; x = np.arange(-8., 8., .01)
+&gt;&gt;&gt; pdf = np.exp(-abs(x-loc/scale))/(2.*scale)
+&gt;&gt;&gt; plt.plot(x, pdf)
 
 Plot Gaussian for comparison:
 
->>> g = (1/(scale * np.sqrt(2 * np.pi)) *
+&gt;&gt;&gt; g = (1/(scale * np.sqrt(2 * np.pi)) *
 ...      np.exp( - (x - loc)**2 / (2 * scale**2) ))
->>> plt.plot(x,g)</pre><hr /><a id='logistic'><h2>randomkit.logistic([result], loc, scale)</h2><pre>
+&gt;&gt;&gt; plt.plot(x,g)
+</pre><hr /><a id='logistic' /><h2>randomkit.logistic([result], loc, scale)</h2><pre>
 Draw samples from a Logistic distribution.
 
 Samples are drawn from a Logistic distribution with specified
@@ -696,7 +714,7 @@ Parameters
 ----------
 loc : float
 
-scale : float > 0.
+scale : float &gt; 0.
 
 
 Returns
@@ -738,17 +756,18 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> loc, scale = 10, 1
->>> s = np.random.logistic(loc, scale, 10000)
->>> count, bins, ignored = plt.hist(s, bins=50)
+&gt;&gt;&gt; loc, scale = 10, 1
+&gt;&gt;&gt; s = np.random.logistic(loc, scale, 10000)
+&gt;&gt;&gt; count, bins, ignored = plt.hist(s, bins=50)
 
 #   plot against distribution
 
->>> def logist(x, loc, scale):
+&gt;&gt;&gt; def logist(x, loc, scale):
 ...     return exp((loc-x)/scale)/(scale*(1+exp((loc-x)/scale))**2)
->>> plt.plot(bins, logist(bins, loc, scale)*count.max()/\
+&gt;&gt;&gt; plt.plot(bins, logist(bins, loc, scale)*count.max()/\
 ... logist(bins, loc, scale).max())
->>> plt.show()</pre><hr /><a id='lognormal'><h2>randomkit.lognormal([result], mean, sigma)</h2><pre>
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='lognormal' /><h2>randomkit.lognormal([result], mean, sigma)</h2><pre>
 Return samples drawn from a log-normal distribution.
 
 Draw samples from a log-normal distribution with specified mean,
@@ -760,7 +779,7 @@ Parameters
 ----------
 mean : float
 Mean value of the underlying normal distribution
-sigma : float, > 0.
+sigma : float, &gt; 0.
 Standard deviation of the underlying normal distribution
 
 Returns
@@ -804,44 +823,45 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> mu, sigma = 3., 1. # mean and standard deviation
->>> s = np.random.lognormal(mu, sigma, 1000)
+&gt;&gt;&gt; mu, sigma = 3., 1. # mean and standard deviation
+&gt;&gt;&gt; s = np.random.lognormal(mu, sigma, 1000)
 
 Display the histogram of the samples, along with
 the probability density function:
 
->>> import matplotlib.pyplot as plt
->>> count, bins, ignored = plt.hist(s, 100, normed=True, align='mid')
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; count, bins, ignored = plt.hist(s, 100, normed=True, align='mid')
 
->>> x = np.linspace(min(bins), max(bins), 10000)
->>> pdf = (np.exp(-(np.log(x) - mu)**2 / (2 * sigma**2))
+&gt;&gt;&gt; x = np.linspace(min(bins), max(bins), 10000)
+&gt;&gt;&gt; pdf = (np.exp(-(np.log(x) - mu)**2 / (2 * sigma**2))
 ...        / (x * sigma * np.sqrt(2 * np.pi)))
 
->>> plt.plot(x, pdf, linewidth=2, color='r')
->>> plt.axis('tight')
->>> plt.show()
+&gt;&gt;&gt; plt.plot(x, pdf, linewidth=2, color='r')
+&gt;&gt;&gt; plt.axis('tight')
+&gt;&gt;&gt; plt.show()
 
 Demonstrate that taking the products of random samples from a uniform
 distribution can be fit well by a log-normal probability density function.
 
->>> # Generate a thousand samples: each is the product of 100 random
->>> # values, drawn from a normal distribution.
->>> b = []
->>> for i in range(1000):
+&gt;&gt;&gt; # Generate a thousand samples: each is the product of 100 random
+&gt;&gt;&gt; # values, drawn from a normal distribution.
+&gt;&gt;&gt; b = []
+&gt;&gt;&gt; for i in range(1000):
 ...    a = 10. + np.random.random(100)
 ...    b.append(np.product(a))
 
->>> b = np.array(b) / np.min(b) # scale values to be positive
->>> count, bins, ignored = plt.hist(b, 100, normed=True, align='center')
->>> sigma = np.std(np.log(b))
->>> mu = np.mean(np.log(b))
+&gt;&gt;&gt; b = np.array(b) / np.min(b) # scale values to be positive
+&gt;&gt;&gt; count, bins, ignored = plt.hist(b, 100, normed=True, align='center')
+&gt;&gt;&gt; sigma = np.std(np.log(b))
+&gt;&gt;&gt; mu = np.mean(np.log(b))
 
->>> x = np.linspace(min(bins), max(bins), 10000)
->>> pdf = (np.exp(-(np.log(x) - mu)**2 / (2 * sigma**2))
+&gt;&gt;&gt; x = np.linspace(min(bins), max(bins), 10000)
+&gt;&gt;&gt; pdf = (np.exp(-(np.log(x) - mu)**2 / (2 * sigma**2))
 ...        / (x * sigma * np.sqrt(2 * np.pi)))
 
->>> plt.plot(x, pdf, color='r', linewidth=2)
->>> plt.show()</pre><hr /><a id='logseries'><h2>randomkit.logseries([result], p)</h2><pre>
+&gt;&gt;&gt; plt.plot(x, pdf, color='r', linewidth=2)
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='logseries' /><h2>randomkit.logseries([result], p)</h2><pre>
 Draw samples from a Logarithmic Series distribution.
 
 Samples are drawn from a Log Series distribution with specified
@@ -851,7 +871,7 @@ Parameters
 ----------
 loc : float
 
-scale : float > 0.
+scale : float &gt; 0.
 
 Returns
 -------
@@ -895,29 +915,32 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> a = .6
->>> s = np.random.logseries(a, 10000)
->>> count, bins, ignored = plt.hist(s)
+&gt;&gt;&gt; a = .6
+&gt;&gt;&gt; s = np.random.logseries(a, 10000)
+&gt;&gt;&gt; count, bins, ignored = plt.hist(s)
 
 #   plot against distribution
 
->>> def logseries(k, p):
+&gt;&gt;&gt; def logseries(k, p):
 ...     return -p**k/(k*log(1-p))
->>> plt.plot(bins, logseries(bins, a)*count.max()/
+&gt;&gt;&gt; plt.plot(bins, logseries(bins, a)*count.max()/
 logseries(bins, a).max(), 'r')
->>> plt.show()</pre><hr /><a id='negative_binomial'><h2>randomkit.negative_binomial([result], n, p)</h2><pre>
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='long' /><h2>randomkit.long([result])</h2>
+<p>Uniform distribution on the signed long integers.</p>
+<hr /><a id='negative_binomial' /><h2>randomkit.negative_binomial([result], n, p)</h2><pre>
 Draw samples from a negative_binomial distribution.
 
 Samples are drawn from a negative_Binomial distribution with specified
 parameters, `n` trials and `p` probability of success where `n` is an
-integer > 0 and `p` is in the interval [0, 1].
+integer &gt; 0 and `p` is in the interval [0, 1].
 
 Parameters
 ----------
 n : int
-Parameter, > 0.
+Parameter, &gt; 0.
 p : float
-Parameter, >= 0 and <=1.
+Parameter, &gt;= 0 and &lt;=1.
 
 Returns
 -------
@@ -958,10 +981,11 @@ of having one success for each successive well, that is what is the
 probability of a single success after drilling 5 wells, after 6 wells,
 etc.?
 
->>> s = np.random.negative_binomial(1, 0.1, 100000)
->>> for i in range(1, 11):
-...    probability = sum(s<i) / 100000.
-...    print i, "wells drilled, probability of one success =", probability</pre><hr /><a id='noncentral_chisquare'><h2>randomkit.noncentral_chisquare([result], df, nonc)</h2><pre>
+&gt;&gt;&gt; s = np.random.negative_binomial(1, 0.1, 100000)
+&gt;&gt;&gt; for i in range(1, 11):
+...    probability = sum(s&lt;i) / 100000.
+...    print i, "wells drilled, probability of one success =", probability
+</pre><hr /><a id='noncentral_chisquare' /><h2>randomkit.noncentral_chisquare([result], df, nonc)</h2><pre>
 Draw samples from a noncentral chi-square distribution.
 
 The noncentral :math:`\chi^2` distribution is a generalisation of
@@ -970,9 +994,9 @@ the :math:`\chi^2` distribution.
 Parameters
 ----------
 df : int
-Degrees of freedom, should be >= 1.
+Degrees of freedom, should be &gt;= 1.
 nonc : float
-Non-centrality, should be > 0.
+Non-centrality, should be &gt; 0.
 
 Notes
 -----
@@ -1000,29 +1024,30 @@ Examples
 --------
 Draw values from the distribution and plot the histogram
 
->>> import matplotlib.pyplot as plt
->>> values = plt.hist(np.random.noncentral_chisquare(3, 20, 100000),
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; values = plt.hist(np.random.noncentral_chisquare(3, 20, 100000),
 ...                   bins=200, normed=True)
->>> plt.show()
+&gt;&gt;&gt; plt.show()
 
 Draw values from a noncentral chisquare with very small noncentrality,
 and compare to a chisquare.
 
->>> plt.figure()
->>> values = plt.hist(np.random.noncentral_chisquare(3, .0000001, 100000),
+&gt;&gt;&gt; plt.figure()
+&gt;&gt;&gt; values = plt.hist(np.random.noncentral_chisquare(3, .0000001, 100000),
 ...                   bins=np.arange(0., 25, .1), normed=True)
->>> values2 = plt.hist(np.random.chisquare(3, 100000),
+&gt;&gt;&gt; values2 = plt.hist(np.random.chisquare(3, 100000),
 ...                    bins=np.arange(0., 25, .1), normed=True)
->>> plt.plot(values[1][0:-1], values[0]-values2[0], 'ob')
->>> plt.show()
+&gt;&gt;&gt; plt.plot(values[1][0:-1], values[0]-values2[0], 'ob')
+&gt;&gt;&gt; plt.show()
 
 Demonstrate how large values of non-centrality lead to a more symmetric
 distribution.
 
->>> plt.figure()
->>> values = plt.hist(np.random.noncentral_chisquare(3, 20, 100000),
+&gt;&gt;&gt; plt.figure()
+&gt;&gt;&gt; values = plt.hist(np.random.noncentral_chisquare(3, 20, 100000),
 ...                   bins=200, normed=True)
->>> plt.show()</pre><hr /><a id='noncentral_f'><h2>randomkit.noncentral_f([result], dfnum, dfden, nonc)</h2><pre>
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='noncentral_f' /><h2>randomkit.noncentral_f([result], dfnum, dfden, nonc)</h2><pre>
 Draw samples from the noncentral F distribution.
 
 Samples are drawn from an F distribution with specified parameters,
@@ -1037,7 +1062,7 @@ Parameter, should be > 1.
 dfden : int
 Parameter, should be > 1.
 nonc : float
-Parameter, should be >= 0.
+Parameter, should be &gt;= 0.
 
 Returns
 -------
@@ -1068,16 +1093,17 @@ area in the tail of the distribution that exceeds the value of the F
 distribution for the null hypothesis.  We'll plot the two probability
 distributions for comparison.
 
->>> dfnum = 3 # between group deg of freedom
->>> dfden = 20 # within groups degrees of freedom
->>> nonc = 3.0
->>> nc_vals = np.random.noncentral_f(dfnum, dfden, nonc, 1000000)
->>> NF = np.histogram(nc_vals, bins=50, normed=True)
->>> c_vals = np.random.f(dfnum, dfden, 1000000)
->>> F = np.histogram(c_vals, bins=50, normed=True)
->>> plt.plot(F[1][1:], F[0])
->>> plt.plot(NF[1][1:], NF[0])
->>> plt.show()</pre><hr /><a id='normal'><h2>randomkit.normal([result], loc, scale)</h2><pre>
+&gt;&gt;&gt; dfnum = 3 # between group deg of freedom
+&gt;&gt;&gt; dfden = 20 # within groups degrees of freedom
+&gt;&gt;&gt; nonc = 3.0
+&gt;&gt;&gt; nc_vals = np.random.noncentral_f(dfnum, dfden, nonc, 1000000)
+&gt;&gt;&gt; NF = np.histogram(nc_vals, bins=50, normed=True)
+&gt;&gt;&gt; c_vals = np.random.f(dfnum, dfden, 1000000)
+&gt;&gt;&gt; F = np.histogram(c_vals, bins=50, normed=True)
+&gt;&gt;&gt; plt.plot(F[1][1:], F[0])
+&gt;&gt;&gt; plt.plot(NF[1][1:], NF[0])
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='normal' /><h2>randomkit.normal([result], loc, scale)</h2><pre>
 Draw random samples from a normal (Gaussian) distribution.
 
 The probability density function of the normal distribution, first
@@ -1131,26 +1157,27 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> mu, sigma = 0, 0.1 # mean and standard deviation
->>> s = np.random.normal(mu, sigma, 1000)
+&gt;&gt;&gt; mu, sigma = 0, 0.1 # mean and standard deviation
+&gt;&gt;&gt; s = np.random.normal(mu, sigma, 1000)
 
 Verify the mean and the variance:
 
->>> abs(mu - np.mean(s)) < 0.01
+&gt;&gt;&gt; abs(mu - np.mean(s)) < 0.01
 True
 
->>> abs(sigma - np.std(s, ddof=1)) < 0.01
+&gt;&gt;&gt; abs(sigma - np.std(s, ddof=1)) < 0.01
 True
 
 Display the histogram of the samples, along with
 the probability density function:
 
->>> import matplotlib.pyplot as plt
->>> count, bins, ignored = plt.hist(s, 30, normed=True)
->>> plt.plot(bins, 1/(sigma * np.sqrt(2 * np.pi)) *
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; count, bins, ignored = plt.hist(s, 30, normed=True)
+&gt;&gt;&gt; plt.plot(bins, 1/(sigma * np.sqrt(2 * np.pi)) *
 ...                np.exp( - (bins - mu)**2 / (2 * sigma**2) ),
 ...          linewidth=2, color='r')
->>> plt.show()</pre><hr /><a id='pareto'><h2>randomkit.pareto([result], a)</h2><pre>
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='pareto' /><h2>randomkit.pareto([result], a)</h2><pre>
 Draw samples from a Pareto II or Lomax distribution with specified shape.
 
 The Lomax or Pareto II distribution is a shifted Pareto distribution. The
@@ -1169,7 +1196,7 @@ percent fill the remaining 80 percent of the range.
 
 Parameters
 ----------
-shape : float, > 0.
+shape : float, &gt; 0.
 Shape of the distribution.
 
 See Also
@@ -1211,17 +1238,18 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> a, m = 3., 1. # shape and mode
->>> s = np.random.pareto(a, 1000) + m
+&gt;&gt;&gt; a, m = 3., 1. # shape and mode
+&gt;&gt;&gt; s = np.random.pareto(a, 1000) + m
 
 Display the histogram of the samples, along with
 the probability density function:
 
->>> import matplotlib.pyplot as plt
->>> count, bins, ignored = plt.hist(s, 100, normed=True, align='center')
->>> fit = a*m**a/bins**(a+1)
->>> plt.plot(bins, max(count)*fit/max(fit),linewidth=2, color='r')
->>> plt.show()</pre><hr /><a id='poisson'><h2>randomkit.poisson([result], lam)</h2><pre>
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; count, bins, ignored = plt.hist(s, 100, normed=True, align='center')
+&gt;&gt;&gt; fit = a*m**a/bins**(a+1)
+&gt;&gt;&gt; plt.plot(bins, max(count)*fit/max(fit),linewidth=2, color='r')
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='poisson' /><h2>randomkit.poisson([result], lam)</h2><pre>
 Draw samples from a Poisson distribution.
 
 The Poisson distribution is the limit of the Binomial
@@ -1230,7 +1258,7 @@ distribution for large N.
 Parameters
 ----------
 lam : float
-Expectation of interval, should be >= 0.
+Expectation of interval, should be &gt;= 0.
 
 Notes
 -----
@@ -1257,14 +1285,15 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> import numpy as np
->>> s = np.random.poisson(5, 10000)
+&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; s = np.random.poisson(5, 10000)
 
 Display histogram of the sample:
 
->>> import matplotlib.pyplot as plt
->>> count, bins, ignored = plt.hist(s, 14, normed=True)
->>> plt.show()</pre><hr /><a id='power'><h2>randomkit.power([result], a)</h2><pre>
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; count, bins, ignored = plt.hist(s, 14, normed=True)
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='power' /><h2>randomkit.power([result], a)</h2><pre>
 Draws samples in [0, 1] from a power distribution with positive
 exponent a - 1.
 
@@ -1273,7 +1302,7 @@ Also known as the power function distribution.
 Parameters
 ----------
 a : float
-parameter, > 0
+parameter, &gt; 0
 
 Returns
 -------
@@ -1312,43 +1341,44 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> a = 5. # shape
->>> samples = 1000
->>> s = np.random.power(a, samples)
+&gt;&gt;&gt; a = 5. # shape
+&gt;&gt;&gt; samples = 1000
+&gt;&gt;&gt; s = np.random.power(a, samples)
 
 Display the histogram of the samples, along with
 the probability density function:
 
->>> import matplotlib.pyplot as plt
->>> count, bins, ignored = plt.hist(s, bins=30)
->>> x = np.linspace(0, 1, 100)
->>> y = a*x**(a-1.)
->>> normed_y = samples*np.diff(bins)[0]*y
->>> plt.plot(x, normed_y)
->>> plt.show()
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; count, bins, ignored = plt.hist(s, bins=30)
+&gt;&gt;&gt; x = np.linspace(0, 1, 100)
+&gt;&gt;&gt; y = a*x**(a-1.)
+&gt;&gt;&gt; normed_y = samples*np.diff(bins)[0]*y
+&gt;&gt;&gt; plt.plot(x, normed_y)
+&gt;&gt;&gt; plt.show()
 
 Compare the power function distribution to the inverse of the Pareto.
 
->>> from scipy import stats
->>> rvs = np.random.power(5, 1000000)
->>> rvsp = np.random.pareto(5, 1000000)
->>> xx = np.linspace(0,1,100)
->>> powpdf = stats.powerlaw.pdf(xx,5)
+&gt;&gt;&gt; from scipy import stats
+&gt;&gt;&gt; rvs = np.random.power(5, 1000000)
+&gt;&gt;&gt; rvsp = np.random.pareto(5, 1000000)
+&gt;&gt;&gt; xx = np.linspace(0,1,100)
+&gt;&gt;&gt; powpdf = stats.powerlaw.pdf(xx,5)
 
->>> plt.figure()
->>> plt.hist(rvs, bins=50, normed=True)
->>> plt.plot(xx,powpdf,'r-')
->>> plt.title('np.random.power(5)')
+&gt;&gt;&gt; plt.figure()
+&gt;&gt;&gt; plt.hist(rvs, bins=50, normed=True)
+&gt;&gt;&gt; plt.plot(xx,powpdf,'r-')
+&gt;&gt;&gt; plt.title('np.random.power(5)')
 
->>> plt.figure()
->>> plt.hist(1./(1.+rvsp), bins=50, normed=True)
->>> plt.plot(xx,powpdf,'r-')
->>> plt.title('inverse of 1 + np.random.pareto(5)')
+&gt;&gt;&gt; plt.figure()
+&gt;&gt;&gt; plt.hist(1./(1.+rvsp), bins=50, normed=True)
+&gt;&gt;&gt; plt.plot(xx,powpdf,'r-')
+&gt;&gt;&gt; plt.title('inverse of 1 + np.random.pareto(5)')
 
->>> plt.figure()
->>> plt.hist(1./(1.+rvsp), bins=50, normed=True)
->>> plt.plot(xx,powpdf,'r-')
->>> plt.title('inverse of stats.pareto(5)')</pre><hr /><a id='randint'><h2>randomkit.randint([result], low, high)</h2><pre>
+&gt;&gt;&gt; plt.figure()
+&gt;&gt;&gt; plt.hist(1./(1.+rvsp), bins=50, normed=True)
+&gt;&gt;&gt; plt.plot(xx,powpdf,'r-')
+&gt;&gt;&gt; plt.title('inverse of stats.pareto(5)')
+</pre><hr /><a id='randint' /><h2>randomkit.randint([result], low, high)</h2><pre>
 Return random integers from `low` (inclusive) to `high` (exclusive).
 
 Return random integers from the "discrete uniform" distribution in the
@@ -1380,16 +1410,19 @@ uniformly distributed discrete non-integers.
 
 Examples
 --------
->>> np.random.randint(2, size=10)
+&gt;&gt;&gt; np.random.randint(2, size=10)
 array([1, 0, 0, 0, 1, 1, 0, 0, 1, 0])
->>> np.random.randint(1, size=10)
+&gt;&gt;&gt; np.random.randint(1, size=10)
 array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 Generate a 2 x 4 array of ints between 0 and 4, inclusive:
 
->>> np.random.randint(5, size=(2, 4))
+&gt;&gt;&gt; np.random.randint(5, size=(2, 4))
 array([[4, 0, 2, 1],
-[3, 2, 2, 0]])</pre><hr /><a id='random'><h2>randomkit.random_sample([result], )</h2><pre>
+[3, 2, 2, 0]])
+</pre><hr /><a id='random' /><h2>randomkit.random([result])</h2>
+<p>Alias for <a href='#random_sample'>randomkit.random_sample</a></p>
+<hr /><a id='random_sample' /><h2>randomkit.random_sample([result])</h2><pre>
 Return random floats in the half-open interval [0.0, 1.0).
 
 Results are from the "continuous uniform" distribution over the
@@ -1409,51 +1442,20 @@ case a single float is returned).
 
 Examples
 --------
->>> np.random.random_sample()
+&gt;&gt;&gt; np.random.random_sample()
 0.47108547995356098
->>> type(np.random.random_sample())
+&gt;&gt;&gt; type(np.random.random_sample())
 <type 'float'>
->>> np.random.random_sample((5,))
+&gt;&gt;&gt; np.random.random_sample((5,))
 array([ 0.30220482,  0.86820401,  0.1654503 ,  0.11659149,  0.54323428])
 
 Three-by-two array of random numbers from [-5, 0):
 
->>> 5 * np.random.random_sample((3, 2)) - 5
+&gt;&gt;&gt; 5 * np.random.random_sample((3, 2)) - 5
 array([[-3.99149989, -0.52338984],
 [-2.99091858, -0.79479508],
-[-1.23204345, -1.75224494]])</pre><hr /><a id='random_sample'><h2>randomkit.random_sample([result], )</h2><pre>
-Return random floats in the half-open interval [0.0, 1.0).
-
-Results are from the "continuous uniform" distribution over the
-stated interval.  To sample :math:`Unif[a, b), b > a` multiply
-the output of `random_sample` by `(b-a)` and add `a`::
-
-(b - a) * random_sample() + a
-
-Parameters
-----------
-
-Returns
--------
-out : float or ndarray of floats
-Array of random floats of shape `size` (unless ``size=None``, in which
-case a single float is returned).
-
-Examples
---------
->>> np.random.random_sample()
-0.47108547995356098
->>> type(np.random.random_sample())
-<type 'float'>
->>> np.random.random_sample((5,))
-array([ 0.30220482,  0.86820401,  0.1654503 ,  0.11659149,  0.54323428])
-
-Three-by-two array of random numbers from [-5, 0):
-
->>> 5 * np.random.random_sample((3, 2)) - 5
-array([[-3.99149989, -0.52338984],
-[-2.99091858, -0.79479508],
-[-1.23204345, -1.75224494]])</pre><hr /><a id='rayleigh'><h2>randomkit.rayleigh([result], scale)</h2><pre>
+[-1.23204345, -1.75224494]])
+</pre><hr /><a id='rayleigh' /><h2>randomkit.rayleigh([result], scale)</h2><pre>
 Draw samples from a Rayleigh distribution.
 
 The :math:`\chi` and Weibull distributions are generalizations of the
@@ -1462,7 +1464,7 @@ Rayleigh.
 Parameters
 ----------
 scale : scalar
-Scale, also equals the mode. Should be >= 0.
+Scale, also equals the mode. Should be &gt;= 0.
 
 Notes
 -----
@@ -1486,20 +1488,21 @@ Examples
 --------
 Draw values from the distribution and plot the histogram
 
->>> values = hist(np.random.rayleigh(3, 100000), bins=200, normed=True)
+&gt;&gt;&gt; values = hist(np.random.rayleigh(3, 100000), bins=200, normed=True)
 
 Wave heights tend to follow a Rayleigh distribution. If the mean wave
 height is 1 meter, what fraction of waves are likely to be larger than 3
 meters?
 
->>> meanvalue = 1
->>> modevalue = np.sqrt(2 / np.pi) * meanvalue
->>> s = np.random.rayleigh(modevalue, 1000000)
+&gt;&gt;&gt; meanvalue = 1
+&gt;&gt;&gt; modevalue = np.sqrt(2 / np.pi) * meanvalue
+&gt;&gt;&gt; s = np.random.rayleigh(modevalue, 1000000)
 
 The percentage of waves larger than 3 meters is:
 
->>> 100.*sum(s>3)/1000000.
-0.087300000000000003</pre><hr /><a id='standard_cauchy'><h2>randomkit.standard_cauchy([result], )</h2><pre>
+&gt;&gt;&gt; 100.*sum(s>3)/1000000.
+0.087300000000000003
+</pre><hr /><a id='standard_cauchy' /><h2>randomkit.standard_cauchy([result])</h2><pre>
 Standard Cauchy distribution with mode = 0.
 
 Also known as the Lorentz distribution.
@@ -1547,10 +1550,11 @@ Examples
 --------
 Draw samples and plot the distribution:
 
->>> s = np.random.standard_cauchy(1000000)
->>> s = s[(s>-25) & (s<25)]  # truncate distribution so it plots well
->>> plt.hist(s, bins=100)
->>> plt.show()</pre><hr /><a id='standard_exponential'><h2>randomkit.standard_exponential([result], )</h2><pre>
+&gt;&gt;&gt; s = np.random.standard_cauchy(1000000)
+&gt;&gt;&gt; s = s[(s>-25) & (s<25)]  # truncate distribution so it plots well
+&gt;&gt;&gt; plt.hist(s, bins=100)
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='standard_exponential' /><h2>randomkit.standard_exponential([result])</h2><pre>
 Draw samples from the standard exponential distribution.
 
 `standard_exponential` is identical to the exponential distribution
@@ -1568,7 +1572,8 @@ Examples
 --------
 Output a 3x8000 array:
 
->>> n = np.random.standard_exponential((3, 8000))</pre><hr /><a id='standard_gamma'><h2>randomkit.standard_gamma([result], shape)</h2><pre>
+&gt;&gt;&gt; n = np.random.standard_exponential((3, 8000))
+</pre><hr /><a id='standard_gamma' /><h2>randomkit.standard_gamma([result], shape)</h2><pre>
 Draw samples from a Standard Gamma distribution.
 
 Samples are drawn from a Gamma distribution with specified parameters,
@@ -1577,7 +1582,7 @@ shape (sometimes designated "k") and scale=1.
 Parameters
 ----------
 shape : float
-Parameter, should be > 0.
+Parameter, should be &gt; 0.
 
 Returns
 -------
@@ -1614,19 +1619,20 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> shape, scale = 2., 1. # mean and width
->>> s = np.random.standard_gamma(shape, 1000000)
+&gt;&gt;&gt; shape, scale = 2., 1. # mean and width
+&gt;&gt;&gt; s = np.random.standard_gamma(shape, 1000000)
 
 Display the histogram of the samples, along with
 the probability density function:
 
->>> import matplotlib.pyplot as plt
->>> import scipy.special as sps
->>> count, bins, ignored = plt.hist(s, 50, normed=True)
->>> y = bins**(shape-1) * ((np.exp(-bins/scale))/ \
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; import scipy.special as sps
+&gt;&gt;&gt; count, bins, ignored = plt.hist(s, 50, normed=True)
+&gt;&gt;&gt; y = bins**(shape-1) * ((np.exp(-bins/scale))/ \
 ...                       (sps.gamma(shape) * scale**shape))
->>> plt.plot(bins, y, linewidth=2, color='r')
->>> plt.show()</pre><hr /><a id='standard_normal'><h2>randomkit.standard_normal([result], )</h2><pre>
+&gt;&gt;&gt; plt.plot(bins, y, linewidth=2, color='r')
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='standard_normal' /><h2>randomkit.standard_normal([result])</h2><pre>
 Returns samples from a Standard Normal distribution (mean=0, stdev=1).
 
 Parameters
@@ -1639,15 +1645,16 @@ Drawn samples.
 
 Examples
 --------
->>> s = np.random.standard_normal(8000)
->>> s
+&gt;&gt;&gt; s = np.random.standard_normal(8000)
+&gt;&gt;&gt; s
 array([ 0.6888893 ,  0.78096262, -0.89086505, ...,  0.49876311, #random
 -0.38672696, -0.4685006 ])                               #random
->>> s.shape
+&gt;&gt;&gt; s.shape
 (8000,)
->>> s = np.random.standard_normal(size=(3, 4, 2))
->>> s.shape
-(3, 4, 2)</pre><hr /><a id='standard_t'><h2>randomkit.standard_t([result], df)</h2><pre>
+&gt;&gt;&gt; s = np.random.standard_normal(size=(3, 4, 2))
+&gt;&gt;&gt; s.shape
+(3, 4, 2)
+</pre><hr /><a id='standard_t' /><h2>randomkit.standard_t([result], df)</h2><pre>
 Standard Student's t distribution with df degrees of freedom.
 
 A special case of the hyperbolic distribution.
@@ -1657,7 +1664,7 @@ distribution (`standard_normal`).
 Parameters
 ----------
 df : int
-Degrees of freedom, should be > 0.
+Degrees of freedom, should be &gt; 0.
 
 Returns
 -------
@@ -1693,7 +1700,7 @@ Examples
 From Dalgaard page 83 [1]_, suppose the daily energy intake for 11
 women in Kj is:
 
->>> intake = np.array([5260., 5470, 5640, 6180, 6390, 6515, 6805, 7515, \
+&gt;&gt;&gt; intake = np.array([5260., 5470, 5640, 6180, 6390, 6515, 6805, 7515, \
 ...                    7515, 8230, 8770])
 
 Does their energy intake deviate systematically from the recommended
@@ -1702,28 +1709,29 @@ value of 7725 kJ?
 We have 10 degrees of freedom, so is the sample mean within 95% of the
 recommended value?
 
->>> s = np.random.standard_t(10, size=100000)
->>> np.mean(intake)
+&gt;&gt;&gt; s = np.random.standard_t(10, size=100000)
+&gt;&gt;&gt; np.mean(intake)
 6753.636363636364
->>> intake.std(ddof=1)
+&gt;&gt;&gt; intake.std(ddof=1)
 1142.1232221373727
 
 Calculate the t statistic, setting the ddof parameter to the unbiased
 value so the divisor in the standard deviation will be degrees of
 freedom, N-1.
 
->>> t = (np.mean(intake)-7725)/(intake.std(ddof=1)/np.sqrt(len(intake)))
->>> import matplotlib.pyplot as plt
->>> h = plt.hist(s, bins=100, normed=True)
+&gt;&gt;&gt; t = (np.mean(intake)-7725)/(intake.std(ddof=1)/np.sqrt(len(intake)))
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; h = plt.hist(s, bins=100, normed=True)
 
 For a one-sided t-test, how far out in the distribution does the t
 statistic appear?
 
->>> >>> np.sum(s<t) / float(len(s))
+&gt;&gt;&gt; &gt;&gt;&gt; np.sum(s&lt;t) / float(len(s))
 0.0090699999999999999  #random
 
 So the p-value is about 0.009, which says the null hypothesis has a
-probability of about 99% of being true.</pre><hr /><a id='triangular'><h2>randomkit.triangular([result], left, mode, right)</h2><pre>
+probability of about 99% of being true.
+</pre><hr /><a id='triangular' /><h2>randomkit.triangular([result], left, mode, right)</h2><pre>
 Draw samples from the triangular distribution.
 
 The triangular distribution is a continuous probability distribution with
@@ -1736,7 +1744,7 @@ left : scalar
 Lower limit.
 mode : scalar
 The value where the peak of the distribution occurs.
-The value should fulfill the condition ``left <= mode <= right``.
+The value should fulfill the condition ``left &lt;= mode &lt;= right``.
 right : scalar
 Upper limit, should be larger than `left`.
 
@@ -1768,10 +1776,13 @@ Examples
 --------
 Draw values from the distribution and plot the histogram:
 
->>> import matplotlib.pyplot as plt
->>> h = plt.hist(np.random.triangular(-3, 0, 8, 100000), bins=200,
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; h = plt.hist(np.random.triangular(-3, 0, 8, 100000), bins=200,
 ...              normed=True)
->>> plt.show()</pre><hr /><a id='uniform'><h2>randomkit.uniform([result], low, high)</h2><pre>
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='ulong' /><h2>randomkit.ulong([result])</h2>
+<p>Uniform distribution on the unsigned long integers.</p>
+<hr /><a id='uniform' /><h2>randomkit.uniform([result], low, high)</h2><pre>
 Draw samples from a uniform distribution.
 
 Samples are uniformly distributed over the half-open interval
@@ -1816,22 +1827,23 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> s = np.random.uniform(-1,0,1000)
+&gt;&gt;&gt; s = np.random.uniform(-1,0,1000)
 
 All values are within the given interval:
 
->>> np.all(s >= -1)
+&gt;&gt;&gt; np.all(s &gt;= -1)
 True
->>> np.all(s < 0)
+&gt;&gt;&gt; np.all(s < 0)
 True
 
 Display the histogram of the samples, along with the
 probability density function:
 
->>> import matplotlib.pyplot as plt
->>> count, bins, ignored = plt.hist(s, 15, normed=True)
->>> plt.plot(bins, np.ones_like(bins), linewidth=2, color='r')
->>> plt.show()</pre><hr /><a id='vonmises'><h2>randomkit.vonmises([result], mu, kappa)</h2><pre>
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; count, bins, ignored = plt.hist(s, 15, normed=True)
+&gt;&gt;&gt; plt.plot(bins, np.ones_like(bins), linewidth=2, color='r')
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='vonmises' /><h2>randomkit.vonmises([result], mu, kappa)</h2><pre>
 Draw samples from a von Mises distribution.
 
 Samples are drawn from a von Mises distribution with specified mode
@@ -1847,7 +1859,7 @@ Parameters
 mu : float
 Mode ("center") of the distribution.
 kappa : float
-Dispersion of the distribution, has to be >=0.
+Dispersion of the distribution, has to be &gt;=0.
 
 Returns
 -------
@@ -1886,19 +1898,20 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> mu, kappa = 0.0, 4.0 # mean and dispersion
->>> s = np.random.vonmises(mu, kappa, 1000)
+&gt;&gt;&gt; mu, kappa = 0.0, 4.0 # mean and dispersion
+&gt;&gt;&gt; s = np.random.vonmises(mu, kappa, 1000)
 
 Display the histogram of the samples, along with
 the probability density function:
 
->>> import matplotlib.pyplot as plt
->>> import scipy.special as sps
->>> count, bins, ignored = plt.hist(s, 50, normed=True)
->>> x = np.arange(-np.pi, np.pi, 2*np.pi/50.)
->>> y = -np.exp(kappa*np.cos(x-mu))/(2*np.pi*sps.jn(0,kappa))
->>> plt.plot(x, y/max(y), linewidth=2, color='r')
->>> plt.show()</pre><hr /><a id='wald'><h2>randomkit.wald([result], mean, scale)</h2><pre>
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; import scipy.special as sps
+&gt;&gt;&gt; count, bins, ignored = plt.hist(s, 50, normed=True)
+&gt;&gt;&gt; x = np.arange(-np.pi, np.pi, 2*np.pi/50.)
+&gt;&gt;&gt; y = -np.exp(kappa*np.cos(x-mu))/(2*np.pi*sps.jn(0,kappa))
+&gt;&gt;&gt; plt.plot(x, y/max(y), linewidth=2, color='r')
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='wald' /><h2>randomkit.wald([result], mean, scale)</h2><pre>
 Draw samples from a Wald, or Inverse Gaussian, distribution.
 
 As the scale approaches infinity, the distribution becomes more like a
@@ -1915,9 +1928,9 @@ distance and distance covered in unit time.
 Parameters
 ----------
 mean : scalar
-Distribution mean, should be > 0.
+Distribution mean, should be &gt; 0.
 scale : scalar
-Scale parameter, should be >= 0.
+Scale parameter, should be &gt;= 0.
 
 Returns
 -------
@@ -1950,9 +1963,10 @@ Examples
 --------
 Draw values from the distribution and plot the histogram:
 
->>> import matplotlib.pyplot as plt
->>> h = plt.hist(np.random.wald(3, 2, 100000), bins=200, normed=True)
->>> plt.show()</pre><hr /><a id='weibull'><h2>randomkit.weibull([result], a)</h2><pre>
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; h = plt.hist(np.random.wald(3, 2, 100000), bins=200, normed=True)
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='weibull' /><h2>randomkit.weibull([result], a)</h2><pre>
 Weibull distribution.
 
 Draw samples from a 1-parameter Weibull distribution with the given
@@ -2012,22 +2026,23 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> a = 5. # shape
->>> s = np.random.weibull(a, 1000)
+&gt;&gt;&gt; a = 5. # shape
+&gt;&gt;&gt; s = np.random.weibull(a, 1000)
 
 Display the histogram of the samples, along with
 the probability density function:
 
->>> import matplotlib.pyplot as plt
->>> x = np.arange(1,100.)/50.
->>> def weib(x,n,a):
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; x = np.arange(1,100.)/50.
+&gt;&gt;&gt; def weib(x,n,a):
 ...     return (a / n) * (x / n)**(a - 1) * np.exp(-(x / n)**a)
 
->>> count, bins, ignored = plt.hist(np.random.weibull(5.,1000))
->>> x = np.arange(1,100.)/50.
->>> scale = count.max()/weib(x, 1., 5.).max()
->>> plt.plot(x, weib(x, 1., 5.)*scale)
->>> plt.show()</pre><hr /><a id='zipf'><h2>randomkit.zipf([result], a)</h2><pre>
+&gt;&gt;&gt; count, bins, ignored = plt.hist(np.random.weibull(5.,1000))
+&gt;&gt;&gt; x = np.arange(1,100.)/50.
+&gt;&gt;&gt; scale = count.max()/weib(x, 1., 5.).max()
+&gt;&gt;&gt; plt.plot(x, weib(x, 1., 5.)*scale)
+&gt;&gt;&gt; plt.show()
+</pre><hr /><a id='zipf' /><h2>randomkit.zipf([result], a)</h2><pre>
 Draw samples from a Zipf distribution.
 
 Samples are drawn from a Zipf distribution with specified parameter
@@ -2074,20 +2089,21 @@ Examples
 --------
 Draw samples from the distribution:
 
->>> a = 2. # parameter
->>> s = np.random.zipf(a, 1000)
+&gt;&gt;&gt; a = 2. # parameter
+&gt;&gt;&gt; s = np.random.zipf(a, 1000)
 
 Display the histogram of the samples, along with
 the probability density function:
 
->>> import matplotlib.pyplot as plt
->>> import scipy.special as sps
+&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; import scipy.special as sps
 Truncate s values at 50 so plot is interesting
->>> count, bins, ignored = plt.hist(s[s<50], 50, normed=True)
->>> x = np.arange(1., 50.)
->>> y = x**(-a)/sps.zetac(a)
->>> plt.plot(x, y/max(y), linewidth=2, color='r')
->>> plt.show()</pre>
+&gt;&gt;&gt; count, bins, ignored = plt.hist(s[s<50], 50, normed=True)
+&gt;&gt;&gt; x = np.arange(1., 50.)
+&gt;&gt;&gt; y = x**(-a)/sps.zetac(a)
+&gt;&gt;&gt; plt.plot(x, y/max(y), linewidth=2, color='r')
+&gt;&gt;&gt; plt.show()
+</pre>
 
           </section>
       </div>

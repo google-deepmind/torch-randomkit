@@ -52,7 +52,7 @@ def writeMDdoc(funcNames, funcInfo, introFile, docFile):
 
 if __name__ == "__main__":
     introFile = "doc/intro.md"
-    docFile = "doc/README.md"
+    docFile = "README.md"
     testFile = "tests/testCalls.lua"
     funcNames = dir(numpy.random)
     excluded = ['RandomState', 'seed', 'set_state', 'get_state', 'choice', 'rand', 

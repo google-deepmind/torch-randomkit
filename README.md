@@ -46,7 +46,7 @@ Specifying an (optional) torch.Generator instance as the first argument will onl
 
 From a terminal:
     
-    torch-rocks install randomkit
+    luarocks install randomkit
 
 
 ##Unit Tests

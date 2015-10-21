@@ -1620,7 +1620,7 @@ Lowest (signed) integer to be drawn from the distribution.
 Largest (signed) integer to be drawn from the distribution.
 
 ####Returns
-* out : int
+* int
 
 ####See Also
 * random.random_integers : similar to `randint`, only for the closed

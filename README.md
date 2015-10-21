@@ -45,7 +45,7 @@ Specifying an (optional) torch.Generator instance as the first argument will onl
 ##Installation
 
 From a terminal:
-    
+
     luarocks install randomkit
 
 
@@ -1603,30 +1603,24 @@ Compare the power function distribution to the inverse of the Pareto.
      $ plt.title('inverse of stats.pareto(5)')
 
 ##randint
-randomkit.randint([output], low, high)
+randomkit.randint(low, high)
 
-Return random integers from `low` (inclusive) to `high` (exclusive).
+Return random integers from `low` (inclusive) to `high` (inclusive).
 
 Return random integers from the "discrete uniform" distribution in the
-"half-open" interval [`low`, `high`). If `high` is None (the default),
-then results are from [0, `low`).
+closed interval [`low`, `high`].
+
+Note: This function behaves differently from the numpy version shown in
+examples.
 
 ####Parameters
 * low : int
-Lowest (signed) integer to be drawn from the distribution (unless
-``high=None``, in which case this parameter is the *highest* such
-integer).
-* high : int, optional
-If provided, one above the largest (signed) integer to be drawn
-from the distribution (see above for behavior if ``high=None``).
-* size : int or tuple of ints, optional
-Output shape. Default is None, in which case a single int is
-returned.
+Lowest (signed) integer to be drawn from the distribution.
+* high : int
+Largest (signed) integer to be drawn from the distribution.
 
 ####Returns
-* out : int or ndarray of ints
-`size`-shaped array of random integers from the appropriate
-distribution, or a single such random int if `size` not provided.
+* out : int
 
 ####See Also
 * random.random_integers : similar to `randint`, only for the closed

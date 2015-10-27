@@ -199,7 +199,7 @@ end
 
 local _setRNGState = torch.setRNGState
 torch.setRNGState = function(generator, state)
-    if state then 
+    if state then
       return _setRNGState(generator, state)
     else
       state = generator

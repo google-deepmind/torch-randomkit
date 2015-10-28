@@ -54,6 +54,21 @@ function myTest.callsetRNGWithGenerator()
     tester:assert(ok, 'Failed to set RNG state')
 end
 
+function myTest.setRNGWithBadPointer()
+  -- To simulate restoring the state from a previous run, we invalidate the
+  -- pointer to the main Torch generator in a state that we are passing to
+  -- setRNGState, and check that this doesn't break things.
+  local state = torch.getRNGState()
+  local x = tonumber(randomkit.binomial(10, 0.4))
+  local badState = ffi.cast("rk_state *", state.randomkit)
+  badState.torch_state = ffi.cast("THGenerator*", 0)
+  torch.setRNGState{
+      torch = state.torch,
+      randomkit = badState
+  }
+  tester:asserteq(x, tonumber(randomkit.binomial(10, 0.4)))
+end
+
 
 tester:add(myTest)
 return tester:run()

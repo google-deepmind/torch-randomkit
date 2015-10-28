@@ -199,7 +199,7 @@ end
 
 local _setRNGState = torch.setRNGState
 torch.setRNGState = function(generator, state)
-    if state then 
+    if state then
       return _setRNGState(generator, state)
     else
       state = generator
@@ -210,6 +210,12 @@ torch.setRNGState = function(generator, state)
     _setRNGState(state.torch)
     -- Deserialize from string
     ffi.copy(randomkit._state, state.randomkit, ffi.sizeof(randomkit._state))
+
+    -- If the state being set is from a previous run, the pointer to the main
+    -- Torch generator will no longer be valid. So we will explicitly update the
+    -- pointer to be current.
+    randomkit._state.torch_state =
+        ffi.cast("THGenerator*", torch.pointer(torch._gen))
 end
 
 local returnTypeMapping = {

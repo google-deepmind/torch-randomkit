@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/deepmind/torch-randomkit.svg?branch=master)](https://travis-ci.org/deepmind/torch-randomkit)
+
 #Randomkit random number generators, wrapped for Torch
 
 Provides and wraps the Randomkit library, copied from Numpy. Please check-out its [website](http://deepmind.github.io/torch-randomkit) for up-to-date documentation or read below.

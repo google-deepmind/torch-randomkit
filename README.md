@@ -996,57 +996,6 @@ logseries(bins, a).max(), 'r')
 
      $ plt.show()
 
-##multinomial
-randomkit.multinomial([output], n, pvals)
-
-Draw samples from a multinomial distribution.
-
-The multinomial distribution is a multivariate generalisation of the
-binomial distribution.  Take an experiment with one of ``p``
-possible outcomes.  An example of such an experiment is throwing a dice,
-where the outcome can be 1 through 6.  Each sample drawn from the
-distribution represents `n` such experiments.  Its values,
-``X_i = [X_0, X_1, ..., X_p]``, represent the number of times the outcome
-was ``i``.
-
-####Parameters
-* n : int
-Number of experiments.
-* pvals : sequence of floats, length p
-Probabilities of each of the ``p`` different outcomes.  These
-should sum to 1 (however, the last element is always assumed to
-account for the remaining probability, as long as
-``sum(pvals[:-1]) <= 1)``.
-* size : tuple of ints
-Given a `size` of ``(M, N, K)``, then ``M*N*K`` samples are drawn,
-and the output shape becomes ``(M, N, K, p)``, since each sample
-has shape ``(p,)``.
-
-####Examples
-Throw a dice 20 times:
-
-     $ np.random.multinomial(20, [1/6.]*6, size=1)
-
-array([[4, 1, 7, 5, 2, 1]])
-
-It landed 4 times on 1, once on 2, etc.
-
-Now, throw the dice 20 times, and 20 times again:
-
-     $ np.random.multinomial(20, [1/6.]*6, size=2)
-
-array([[3, 4, 3, 3, 4, 3],
-[2, 4, 3, 4, 0, 7]])
-
-For the first run, we threw 3 times 1, 4 times 2, etc.  For the second,
-we threw 2 times 1, 4 times 2, etc.
-
-A loaded dice is more likely to land on number 6:
-
-     $ np.random.multinomial(100, [1/7.]*5)
-
-array([13, 16, 13, 16, 42])
-
 ##multivariate_normal
 randomkit.multivariate_normal([output], mean, cov[])
 

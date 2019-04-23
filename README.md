@@ -2,6 +2,8 @@
 
 #Randomkit random number generators, wrapped for Torch
 
+**NOTE: THIS PACKAGE IS NOT ACTIVELY MAINTAINED**
+
 Provides and wraps the Randomkit library, copied from Numpy. Please check-out its [website](http://deepmind.github.io/torch-randomkit) for up-to-date documentation or read below.
 
 ##Example
